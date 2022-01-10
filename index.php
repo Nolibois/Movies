@@ -10,7 +10,7 @@
 
   // Display
   ?><pre><?php
-  // var_dump($result[0]->title);
+  //   var_dump($resultat[$result]);
   ?></pre><?php
 
 ?>
@@ -26,30 +26,29 @@
 </head>
 <body>
   <section class="container">
-  <h1 class="w-25 mx-auto">Liste de films</h1>
+  <h1 class="w-25 text-primary text-center mx-auto mb-5">Liste de films</h1>
     <div class="row gap-4">
       <?php
-        foreach($result as $key => $value){
-          if ($result[$key]->rating) {
-            $rating = "<li class='list-group-item'><strong>Avis: </strong>" .$result[$key]->rating. " / 5</li>";
+        foreach($result as $film){
+          if ($film->rating) {
+            $rating = "<li class='list-group-item'><strong>Avis: </strong>" .$film->rating. " / 5</li>";
           }else{
             $rating = "<li class='list-group-item'>Pas d'avis pour le moment.</li>";
           }
 
           echo "
             <div class='card' style='width: 18rem;'>
-            <div class='card-body'>
-              <h2 class='card-title'>" .$result[$key]->title. "</h2>
+              <div class='card-body'>
+                <h2 class='card-title'>" .$film->title. "</h2>
+              </div>
+                <ul class='list-group list-group-flush'>
+                  <li class='list-group-item'><strong>Le réalisateur: </strong>" .$film->author. "</li>
+                  <li class='list-group-item'><strong>Durée: </strong>" .$film->duration. " min</li>
+                  <li class='list-group-item'><strong>Sortie le: </strong>" .$film->date_out. "</li>
+                  $rating
+                </ul>
             </div>
-              <ul class='list-group list-group-flush'>
-                <li class='list-group-item'><strong>Le réalisateur: </strong>" .$result[$key]->author. "</li>
-                <li class='list-group-item'><strong>Durée: </strong>" .$result[$key]->duration. " min</li>
-                <li class='list-group-item'><strong>Sortie le: </strong>" .$result[$key]->date_out. "</li>
-                $rating
-              </ul>
-
-            </div>
-            ";
+          ";
         }
       ?>
     </div>
